@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Administração - Tabela FIFA</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap');
+
+    body {
+      font-family: 'Rubik', sans-serif;
+      margin: 2rem;
+      background: linear-gradient(to bottom right, #0c0c0c, #000000);
+      color: #000000;
+    }
+
+    #login, #admin-panel {
+      max-width: 900px;
+      margin: auto;
+      background: rgba(0, 0, 0, 0.85);
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    }
+
+    h2 {
+      text-align: center;
+      color: #00ff91;
+    }
+
+    #login input {
+      padding: 8px;
+      width: 100%;
+      box-sizing: border-box;
+      border: none;
+      border-radius: 6px;
+      background: #2b2b2b;
+      color: #ffffff;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    #login input::placeholder {
+      color: #000000 !important;
+    }
+
+    #admin-table input {
+      width: 60px;
+      padding: 4px;
+      border-radius: 4px;
+      border: 1px solid #444;
+      text-align: center;
+      color: #ffffff;
+      background-color: #000000;
+      font-weight: bold;
+    }
+
+    button {
+      background-color: #00ff91;
+      color: #003300;
+      font-weight: bold;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 255, 145, 0.3);
+      transition: all 0.3s ease;
+      margin-top: 10px;
+      display: inline-block;
+    }
+
+    button:hover {
+      background-color: #a8ffc0;
+      box-shadow: 0 6px 14px rgba(0, 255, 145, 0.5);
+      transform: translateY(-2px);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background-color: #1a1a1a;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    th, td {
+      border: 1px solid #333;
+      padding: 10px;
+      text-align: center;
+      color: #ffffff;
+    }
+
+    th {
+      background-color: #00ff91;
+      color: #000;
+      text-transform: uppercase;
+    }
+
+    .msg {
+      margin: 10px 0;
+      color: #00ff91;
+    }
+
+    .error {
+      color: #ff4f4f;
+    }
+
+    /* RESPONSIVIDADE */
+    @media (max-width: 768px) {
+      table, thead, tbody, th, td, tr {
+        display: block;
+      }
+
+      thead {
+        display: none;
+      }
+
+      tr {
+        margin-bottom: 15px;
+        border: 1px solid #333;
+        border-radius: 10px;
+        padding: 10px;
+        background-color: #1a1a1a;
+      }
+
+      td {
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+      }
+
+      td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 10px;
+        width: 45%;
+        padding-left: 5px;
+        font-weight: bold;
+        color: #00ff91;
+        text-align: left;
+      }
+
+      #admin-table input {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="login">
+    <h2>Login de Administrador</h2>
+    <input type="text" id="username" placeholder="Usuário" />
+    <input type="password" id="password" placeholder="Senha" />
+    <button onclick="login()">Entrar</button>
+    <p id="login-msg" class="error"></p>
+  </div>
+
+  <button onclick="window.location.href='index.html'">Voltar</button>
+  <button onclick="deslogarDispositivo()">Deslogar este dispositivo</button>
+
+<script>
+  function deslogarDispositivo() {
+    localStorage.removeItem("modoAdmin");
+    alert("Dispositivo deslogado!");
+    window.location.href = "index.html";
+  }
+</script>
+
+  Sair do Admin e Voltar para a Tabela
+</button>
+
+
+  <div id="admin-panel" style="display:none;">
+    <h2>Painel de Administração</h2>
+    <button onclick="window.location.href='admin.html'">Voltar</button>
+
+    <table id="admin-table" border="1">
+      <thead>
+        <tr>
+          <th>Time</th>
+          <th>Pontos Reais</th>
+          <th>Jogos</th>
+          <th>Vitórias</th>
+          <th>Empates</th>
+          <th>Derrotas</th>
+          <th>Gols Pró</th>
+          <th>Gols Contra</th>
+          <th>Amarelos</th>
+          <th>Vermelhos</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <button id="salvarBtn">Salvar Alterações</button>
+    <p id="save-msg" class="msg"></p>
+  </div>
+
+  <script>
+    const timesPadrao = [
+      "André", "Davizão", "Gabriel", "Jão", "Haaland Moreno", "Samuel"
+    ];
+
+    const campos = [
+      "pontos", "jogos", "vitorias", "empates", "derrotas",
+      "golsPro", "golsContra", "amarelos", "vermelhos"
+    ];
+
+    function login() {
+      const user = document.getElementById('username').value;
+      const pass = document.getElementById('password').value;
+      const msg = document.getElementById('login-msg');
+
+      if (user === 'admin' && pass === '123') {
+        document.getElementById('login').style.display = 'none';
+        document.getElementById('admin-panel').style.display = 'block';
+        carregarTabelaAdmin();
+      } else {
+        msg.innerText = "Usuário ou senha incorretos!";
+      }
+    }
+
+    function calcularPontosReais(time) {
+      return (time.pontos || 0) - (time.amarelos || 0) - 2 * (time.vermelhos || 0);
+    }
+
+    function formatarLabel(campo) {
+      switch (campo) {
+        case 'jogos': return 'Jogos';
+        case 'vitorias': return 'Vitórias';
+        case 'empates': return 'Empates';
+        case 'derrotas': return 'Derrotas';
+        case 'golsPro': return 'Gols Pró';
+        case 'golsContra': return 'Gols Contra';
+        case 'amarelos': return 'Amarelos';
+        case 'vermelhos': return 'Vermelhos';
+        default: return campo.charAt(0).toUpperCase() + campo.slice(1);
+      }
+    }
+
+    function carregarTabelaAdmin() {
+      const dados = JSON.parse(localStorage.getItem("tabelaFifa")) || timesPadrao.map(time => ({
+        time,
+        pontos: 0,
+        jogos: 0,
+        vitorias: 0,
+        empates: 0,
+        derrotas: 0,
+        golsPro: 0,
+        golsContra: 0,
+        amarelos: 0,
+        vermelhos: 0
+      }));
+
+      const tbody = document.querySelector("#admin-table tbody");
+      tbody.innerHTML = "";
+
+      dados.forEach(d => {
+        const pontosReais = calcularPontosReais(d);
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td data-label="Time">${d.time}</td>
+          <td data-label="Pontos Reais">${pontosReais}</td>
+          ${campos.slice(1).map((campo, i) =>
+            `<td data-label="${formatarLabel(campo)}">
+              <input type="number" value="${d[campo] || 0}" />
+            </td>`).join("")}
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function salvarDados() {
+      const linhas = document.querySelectorAll("#admin-table tbody tr");
+      const dados = [];
+
+      linhas.forEach(linha => {
+        const time = linha.querySelector("td").innerText;
+        const inputs = linha.querySelectorAll("input");
+        const obj = { time };
+
+        campos.slice(1).forEach((campo, i) => {
+          obj[campo] = parseInt(inputs[i].value) || 0;
+        });
+
+        dados.push(obj);
+      });
+
+      localStorage.setItem("tabelaFifa", JSON.stringify(dados));
+      document.getElementById("save-msg").innerText = "Alterações salvas com sucesso!";
+      carregarTabelaAdmin();
+    }
+
+    document.getElementById("salvarBtn").addEventListener("click", salvarDados);
+
+    window.onload = () => {
+      carregarTabelaAdmin();
+    };
+  </script>
+</body>
+</html>

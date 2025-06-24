@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tabela de Pontuação - FIFA</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Botão secreto na logo -->
+  <div class="logo-container" style="cursor:pointer;" title="Clique para acessar admin">
+    <img
+      src="img/logoo-removebg-preview.png"
+      alt="Logo EA FC25"
+      class="logo"
+      onclick="window.location.href='admin.html'"
+    />
+  </div>
+
+  <h1 class="titulo">Tabela de Pontuação - FIFA</h1>
+
+  <div class="table-wrapper">
+    <table id="tabela-times">
+      <thead>
+        <tr>
+          <th>Pos</th>
+          <th>Time</th>
+          <th>Pontos</th>
+          <th>Jogos</th>
+          <th>Vitórias</th>
+          <th>Empates</th>
+          <th>Derrotas</th>
+          <th>Gols Pro</th>
+          <th>Gols Contra</th>
+          <th>🟨</th>
+          <th>🟥</th>
+          <th>Saldo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Conteúdo será gerado via script.js -->
+      </tbody>
+    </table>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
