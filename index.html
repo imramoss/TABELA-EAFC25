@@ -7,17 +7,16 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Botão secreto na logo -->
+  <!-- Botão secreto no logo -->
   <div class="logo-container" style="cursor:pointer;" title="Clique para acessar admin">
     <img
       src="img/logoo-removebg-preview.png"
       alt="Logo EA FC25"
       class="logo"
-      onclick="window.location.href='admin.html'"
-    />
+      onclick="window.location.href='admin.html'" />
   </div>
 
-  <h1 class="titulo">Tabela de Pontuação - EAFC 25</h1>
+  <h1 class="titulo">Tabela de Pontuação - FIFA</h1>
 
   <div class="table-wrapper">
     <table id="tabela-times">
@@ -32,17 +31,18 @@
           <th>Derrotas</th>
           <th>Gols Pro</th>
           <th>Gols Contra</th>
-          <th>🟨</th>
-          <th>🟥</th>
+          <th><span style="color:gold;">🟨</span></th>
+          <th><span style="color:red;">🟥</span></th>
           <th>Saldo</th>
         </tr>
       </thead>
       <tbody>
-        <!-- Conteúdo será gerado via script.js -->
+        <!-- Dados dinâmicos inseridos via script.js -->
       </tbody>
     </table>
   </div>
 
+  <!-- script da tabela -->
   <script src="script.js"></script>
 </body>
 </html>
