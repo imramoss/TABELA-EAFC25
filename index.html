@@ -1,19 +1,14 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tabela de Pontuação - FIFA</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Botão secreto no logo -->
-  <div class="logo-container" style="cursor:pointer;" title="Clique para acessar admin">
-    <img
-      src="img/logoo-removebg-preview.png"
-      alt="Logo EA FC25"
-      class="logo"
-      onclick="window.location.href='admin.html'" />
+  <div class="logo-container">
+    <img src="img/logo.png" alt="Logo FIFA" class="logo">
   </div>
 
   <h1 class="titulo">Tabela de Pontuação - FIFA</h1>
@@ -22,27 +17,26 @@
     <table id="tabela-times">
       <thead>
         <tr>
-          <th>Pos</th>
-          <th>Time</th>
-          <th>Pontos</th>
-          <th>Jogos</th>
-          <th>Vitórias</th>
-          <th>Empates</th>
-          <th>Derrotas</th>
-          <th>Gols Pro</th>
-          <th>Gols Contra</th>
-          <th><span style="color:gold;">🟨</span></th>
-          <th><span style="color:red;">🟥</span></th>
-          <th>Saldo</th>
+          <th>POS</th>
+          <th>TIME</th>
+          <th>PONTOS</th>
+          <th>JOGOS</th>
+          <th>VITÓRIAS</th>
+          <th>EMPATES</th>
+          <th>DERROTAS</th>
+          <th>GOLS PRO</th>
+          <th>GOLS CONTRA</th>
+          <th>🟨</th>
+          <th>🟥</th>
+          <th>SALDO</th>
         </tr>
       </thead>
       <tbody>
-        <!-- Dados dinâmicos inseridos via script.js -->
+        <!-- Dados da tabela serão inseridos pelo JS -->
       </tbody>
     </table>
   </div>
 
-  <!-- script da tabela -->
   <script src="script.js"></script>
 </body>
 </html>

@@ -1,48 +1,63 @@
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f0f0f0;
   margin: 0;
   padding: 0;
+  font-family: 'Arial', sans-serif;
+  background-image: url('img/fundo.jpg'); /* Coloque sua imagem de fundo aqui */
+  background-size: cover;
+  background-position: center;
+  color: white;
   text-align: center;
 }
 
 .titulo {
-  margin-top: 20px;
-  font-size: 24px;
-  color: #333;
+  margin-top: 30px;
+  font-size: 32px;
+  font-weight: bold;
+  color: #00ff99; /* Verde neon */
+  text-shadow: 2px 2px 4px #000;
 }
 
 .logo-container {
-  margin-top: 10px;
+  margin-top: 20px;
 }
 
 .logo {
-  width: 100px;
+  width: 80px;
 }
 
 .table-wrapper {
-  margin: 20px auto;
-  width: 95%;
+  margin: 30px auto;
+  width: 90%;
+  max-width: 1100px;
   overflow-x: auto;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 10px;
-  background-color: #fff;
+  background-color: rgba(0, 255, 150, 0.95); /* Verde neon com opacidade */
+  border-radius: 12px;
+  overflow: hidden;
 }
 
 th, td {
-  border: 1px solid #ddd;
-  padding: 8px;
+  padding: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #000;
+  text-align: center;
 }
 
 th {
-  background-color: #333;
-  color: white;
+  background-color: #00e676; /* Cabeçalho em verde mais forte */
 }
 
 tr:nth-child(even) {
-  background-color: #f2f2f2;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+tr:nth-child(odd) {
+  background-color: rgba(255, 255, 255, 0.95);
 }
